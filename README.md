@@ -12,7 +12,7 @@
 ### COTC SKUs' Retention in Trade Returns 
 <p align="center">
   <img width="640" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/2d37752d-19f2-4ab5-b9db-bbe744645770">
-  <img width="640" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/8a1ef9f0-1088-4054-8d22-dddf61dc6ca1">
+  <img width="500" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/8a1ef9f0-1088-4054-8d22-dddf61dc6ca1">
 </p>
 
 ### Primary Off/Constrainted Impact Analysis
