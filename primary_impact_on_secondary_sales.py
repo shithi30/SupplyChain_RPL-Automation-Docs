@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 # import
 import glob
 import pandas as pd
@@ -14,10 +11,6 @@ from openpyxl.formatting.rule import Rule
 from openpyxl.styles.differential import DifferentialStyle
 from openpyxl.styles import PatternFill, Font
 
-
-# In[2]:
-
-
 # read SKUs
 def read_sku_dates():
     file = r"C:\Users\Shithi.Maitra\Downloads\CCF Files\Constraints Packs MTD June 23.xlsx"
@@ -27,10 +20,6 @@ def read_sku_dates():
     df2 = duckdb.query('''select "BP Name" Basepack, left("Start", 10)::date strt_date, left("End", 10)::date end_date, 'removed' modality from df2''').df()
     sku_date_df = duckdb.query('''select * from df1 union select * from df2''').df()
     return sku_date_df
-
-
-# In[3]:
-
 
 # read SCCF
 def read_sccf(): 
@@ -50,17 +39,9 @@ def read_sccf():
         sccf_df = sccf_df.append(df)
     return sccf_df
 
-
-# In[4]:
-
-
 # read data
 sku_dates_df = read_sku_dates()
 sccf_read_df = read_sccf()
-
-
-# In[29]:
-
 
 # read primary data
 prim_df = pd.read_excel(open(r"C:\Users\Shithi.Maitra\Downloads\CCF Files\Primary Linefill_YTD 2023.xlsx", "rb"), sheet_name="UBL&UCL", header=0, index_col=None)
@@ -69,16 +50,8 @@ prim_df = duckdb.query('''select strptime(report_date, '%d.%m.%Y')::date report_
 prim_df = duckdb.query('''select * from prim_df where report_date>='2023-01-01' and report_date<'2023-07-01' ''').df()
 prim_df
 
-
-# In[89]:
-
-
 # correct date - delete later
 sku_dates_df = read_sku_dates()
-
-
-# In[90]:
-
 
 # contribution
 qry = '''
@@ -95,10 +68,6 @@ from
 ''' 
 contrib_df = duckdb.query(qry).df()
 contrib_df
-
-
-# In[91]:
-
 
 # selective data
 qry = '''
@@ -134,10 +103,6 @@ from
 '''
 sccf_df = duckdb.query(qry).df()
 sccf_df
-
-
-# In[92]:
-
 
 # bring attributes
 qry = '''
@@ -201,29 +166,17 @@ from
 piv_sccf_df = duckdb.query(qry).df()
 piv_sccf_df
 
-
-# In[93]:
-
-
 # pivot
 piv_df = pd.pivot_table(piv_sccf_df, values='val', index=['Contribution', 'Basepack', 'Measure'], columns='report_date', sort=True)
-piv_df
-
-
-# In[94]:
-
+display(piv_df)
 
 # cosmetic
 piv_df = piv_df.replace(-1, "constrainted")
 piv_df = piv_df.replace(-2, "removed")
 piv_df = piv_df.replace(-3, "on")
-# piv_df = piv_df.replace(-4, "no data")
+piv_df = piv_df.replace(-4, "no data")
 piv_df = piv_df.replace(-4, "on")
-piv_df
-
-
-# In[95]:
-
+display(piv_df)
 
 # analyses
 qry = '''
@@ -263,11 +216,7 @@ group by 1, 2
 order by 1 desc
 '''
 summ_df = duckdb.query(qry).df()
-summ_df
-
-
-# In[96]:
-
+display(summ_df)
 
 # write
 path = "primary_off_impact.xlsx"
@@ -275,10 +224,6 @@ writer = pd.ExcelWriter(path, engine = 'openpyxl')
 piv_df.to_excel(writer, sheet_name='Sheet1', startrow=0, startcol=0, index=True)
 summ_df.to_excel(writer, sheet_name='Sheet2', startrow=1, startcol=0, index=False)
 writer.close()
-
-
-# In[97]:
-
 
 # format
 workbook = load_workbook(path)
@@ -329,16 +274,10 @@ worksheet.freeze_panes = worksheet['D2']
 workbook.save(path)
 workbook.close()
 
-
-# In[102]:
-
-
+# test an SKU
 qry = '''select * from sccf_df where Basepack='VASELINE BODY PETRLUM JELLY (3X9ML+50ML)' order by 1 '''
 df = duckdb.query(qry).df()
-df
-
-
-# In[ ]:
+display(df)
 
 
 
