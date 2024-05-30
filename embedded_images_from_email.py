@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[22]:
-
-
 # lib: C:\Users\Shithi.Maitra\Anaconda3\Lib\site-packages\pywhatkit
 # ref: https://github.com/Sven-Bo/download-messages-attachments-from-outlook/blob/master/retrieve_outlook_data.py
 # sales grp: GQl2yIAav9i3ejwzWC5XKu, test grp: IVzs19MPkFB54OCxiuSrFK, only me grp: DXqnN42tpV27ZoVWszBH9D
@@ -80,16 +77,6 @@ for grp in groups:
         pywhatkit.sendwhats_image(receiver=grp, caption=title, img_path=to_send_path[s], tab_close=True, close_time=10)
         print('Sent ' + to_send_path[s] + ' As: ' + title)
         
-
-
-# In[ ]:
-
-
-
-
-
-
-
 
 
 
