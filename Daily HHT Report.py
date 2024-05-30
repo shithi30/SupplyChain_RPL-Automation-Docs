@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 # import
 from pathlib import Path
 import win32com.client
@@ -14,10 +11,6 @@ from pretty_html_table import build_table
 import random
 from datetime import datetime
 import time
-
-
-# In[2]:
-
 
 # fetch HHT File
 def fetch_hht_file(file): 
@@ -45,20 +38,11 @@ def fetch_hht_file(file):
                 print("Found: " + filename)
                 attachment.SaveAsFile(output_dir / filename) 
                 return
-            
-
-
-# In[3]:
-
 
 # download
 yester_day = duckdb.query('''select strftime(current_date-1, '%d %b %Y') dt''').df()['dt'].tolist()[0]
 filename = 'Secondary order_' + yester_day
 fetch_hht_file(filename)
-
-
-# In[4]:
-
 
 # input
 ip_df = pd.read_excel(open("C:/Users/Shithi.Maitra/Unilever Codes/Ad Hoc/HHT Files/" + filename + ".xlsx", "rb"), sheet_name="Sheet1", header=0, index_col=None)
@@ -67,11 +51,7 @@ ip_df.columns = ['cls', 'bp', 'cat', 'town', 'company', 'hht_order_qty_cs']
 ip_df = duckdb.query('''select * from ip_df where hht_order_qty_cs>0''').df()
 display(ip_df)
 
-
-# In[ ]:
-
-
-# analysis
+## analysis
 # basepack
 qry = '''
 select 
@@ -97,10 +77,6 @@ town_df = duckdb.query(qry).df()
 qry = '''select company, sum(hht_order_qty_cs) "hht_order_qty_cs" from ip_df group by 1 order by 2 desc'''
 company_df = duckdb.query(qry).df()
 
-
-# In[ ]:
-
-
 # store
 with pd.ExcelWriter("C:/Users/Shithi.Maitra/Downloads/hht_daily_" + yester_day + ".xlsx") as writer:
     ip_df.to_excel(writer, sheet_name="Full", index=False)
@@ -108,10 +84,6 @@ with pd.ExcelWriter("C:/Users/Shithi.Maitra/Downloads/hht_daily_" + yester_day +
     cls_df.to_excel(writer, sheet_name="Class", index=False)
     cat_df.to_excel(writer, sheet_name="Category", index=False)
     company_df.to_excel(writer, sheet_name="Company", index=False)
-
-
-# In[ ]:
-
 
 # email analysis
 total_hht_ord = duckdb.query('''select sum("hht_order_qty_cs") hht_order_qty_cs from ip_df''').df()['hht_order_qty_cs'].tolist()[0]
@@ -132,10 +104,6 @@ limit 7
 '''
 email_df = duckdb.query(qry).df()
 display(email_df)
-
-
-# In[ ]:
-
 
 # email
 ol = win32com.client.Dispatch("outlook.application")
@@ -168,14 +136,6 @@ newmail.Attachments.Add(filename)
 # send
 newmail.Send()
 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
