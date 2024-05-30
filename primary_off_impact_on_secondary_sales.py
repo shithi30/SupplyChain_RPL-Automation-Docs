@@ -48,7 +48,7 @@ prim_df = pd.read_excel(open(r"C:\Users\Shithi.Maitra\Downloads\CCF Files\Primar
 prim_df.columns = ['report_date', 'Basepack', 'prim_ord_qty', 'prim_inv_qty']
 prim_df = duckdb.query('''select strptime(report_date, '%d.%m.%Y')::date report_date, Basepack, prim_ord_qty, prim_inv_qty from prim_df''').df()
 prim_df = duckdb.query('''select * from prim_df where report_date>='2023-01-01' and report_date<'2023-07-01' ''').df()
-prim_df
+display(prim_df)
 
 # correct date - delete later
 sku_dates_df = read_sku_dates()
@@ -67,7 +67,7 @@ from
     ) tbl2
 ''' 
 contrib_df = duckdb.query(qry).df()
-contrib_df
+display(contrib_df)
 
 # selective data
 qry = '''
@@ -102,7 +102,7 @@ from
     ) tbl2 on(report_date>=strt_date and report_date<=end_date and tbl1.Basepack=tbl2.Basepack)
 '''
 sccf_df = duckdb.query(qry).df()
-sccf_df
+display(sccf_df)
 
 # bring attributes
 qry = '''
@@ -164,7 +164,7 @@ from
     contrib_df tbl2 using(Basepack)
 '''
 piv_sccf_df = duckdb.query(qry).df()
-piv_sccf_df
+display(piv_sccf_df)
 
 # pivot
 piv_df = pd.pivot_table(piv_sccf_df, values='val', index=['Contribution', 'Basepack', 'Measure'], columns='report_date', sort=True)
