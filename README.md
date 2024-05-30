@@ -14,6 +14,12 @@
   <img width="640" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/2d37752d-19f2-4ab5-b9db-bbe744645770">
 </p>
 
+### Primary Off/Constrainted Impact Analysis
+<p align="center">
+  <img width="940" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/c7a07843-087e-4742-81e6-7de971f95d7e">
+  <img width="940" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/f07d3e0e-d2f8-4d3e-a17b-ae200ffb0857">
+</p>
+
 
 
 
