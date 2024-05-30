@@ -9,6 +9,11 @@
   <img width="620" alt="Capture 6" src="https://github.com/shithi30/SupplyChain-RPL_Automation_Scripts/assets/43873081/8770bd7f-0503-4837-b83e-c272b93abc58">
 </p>
 
+### COTC SKUs' Retention in Trade Returns 
+<p align="center">
+  <img width="640" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/2d37752d-19f2-4ab5-b9db-bbe744645770">
+</p>
+
 
 
 
