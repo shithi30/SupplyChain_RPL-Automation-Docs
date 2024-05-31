@@ -1,31 +1,16 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 # import
 import pandas as pd
 import warnings
 import duckdb
 
-
-# In[2]:
-
-
 # preferences
 warnings.filterwarnings("ignore")
 
-
-# In[3]:
-
-
 # PH data
 ph_df = pd.read_excel(open("03. PH2023-26th Jan 23.xlsx", 'rb'), sheet_name="Selling code_Jan 2023", header=0, index_col=None)
-
-
-# In[4]:
-
 
 # active data 
 active_df = pd.read_excel(open("rptActiveBasepack_14022023.xlsx", 'rb'), sheet_name="Sheet1", header=0, index_col=None)
@@ -35,10 +20,6 @@ from active_df
 '''
 active_df = duckdb.query(qry).df()
 active_df.head(5)
-
-
-# In[5]:
-
 
 # jupyter data sheet-01
 jupyter_df1 = pd.read_excel(open("Feb'23 Jupiter communication - 13.02.23 (Revised).xlsx", 'rb'), sheet_name="February'23 Jupiter Activity", header=0, index_col=None)
@@ -71,10 +52,6 @@ where tbl2.active_bp_code is null
 '''
 res_df1 = duckdb.query(qry).df()
 print(res_df1)
-
-
-# In[6]:
-
 
 # jupyter data sheet-02
 jupyter_df2 = pd.read_excel(open("Feb'23 Jupiter communication - 13.02.23 (Revised).xlsx", 'rb'), sheet_name="January'23 Slip Out", header=0, index_col=None)
@@ -113,10 +90,6 @@ where tbl2.active_bp_code is null
 res_df2 = duckdb.query(qry).df()
 print(res_df2)
 
-
-# In[7]:
-
-
 # alloc data (trimmed)
 alloc_df = pd.read_excel(open("AllocationDetails_Version 12 to 14 Feb 2023_UBL.xlsx", 'rb'), sheet_name="Allocation Details", header=2, index_col=None)
 qry = '''
@@ -137,10 +110,6 @@ where
 alloc_trim_df = duckdb.query(qry).df()
 print(alloc_trim_df)
 
-
-# In[8]:
-
-
 # price data
 price_df = pd.read_excel(open("RadGridExport (26).xls", 'rb'), sheet_name="RadGridExport", header=0, index_col=None)
 qry = '''
@@ -152,10 +121,6 @@ from
 '''
 price_df = duckdb.query(qry).df()
 print(price_df)
-
-
-# In[9]:
-
 
 # if active price < alloc price
 qry = '''
@@ -190,10 +155,6 @@ where alloc_price>active_price
 '''
 active_greater_alloc_df = duckdb.query(qry).df()
 print(active_greater_alloc_df)
-
-
-# In[10]:
-
 
 # cases to activate
 qry='''
@@ -233,10 +194,6 @@ from res_df2
 '''
 res_df = duckdb.query(qry).df()
 print(res_df)
-
-
-# In[11]:
-
 
 # to Excel
 res_df.to_excel('activate_cases.xlsx', engine='xlsxwriter', index=False)
