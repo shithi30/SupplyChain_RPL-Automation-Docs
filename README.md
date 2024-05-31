@@ -53,7 +53,7 @@ Collaborative analysis with logistics, CNF, procurement & planning uncovered bus
 
 ### Overstock Analysis - Value Index vs. QMix
 <p align="center">
-  <img width="500" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/eafe4a5e-1af9-4ca8-8562-785f3dad472a">
+  <img width="620" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/eafe4a5e-1af9-4ca8-8562-785f3dad472a">
 </p>
 
 ### Project Jupyter - Material Activation Analysis
