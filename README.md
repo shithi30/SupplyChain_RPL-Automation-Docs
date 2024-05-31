@@ -21,7 +21,7 @@
   <img width="940" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/f07d3e0e-d2f8-4d3e-a17b-ae200ffb0857">
 </p>
 
-### Sec. Sales CCF Loss Tagging & Potential
+### Secondary Sales CCF Loss Tagging & Potential
 <p align="center">
   <img width="320" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/cf0ec1e0-f062-43ca-9c75-0c7602dd2a57">
   <img width="500" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/28c3635b-ff0f-4ad4-b68f-640c5729195b">
