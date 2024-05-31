@@ -12,35 +12,35 @@ import os
 warnings.filterwarnings("ignore")
 
 # SCCF data
-path='Secondary_CCFOT_Report_'
-sccf_df=pd.DataFrame()
+path = 'Secondary_CCFOT_Report_'
+sccf_df = pd.DataFrame()
 for file in glob(path+'*.xlsx'):
-    file_name=os.path.basename(file).split('.')[0]
-    df=pd.read_excel(open(file, 'rb'), sheet_name='Sheet1', header=0, index_col=None)
-    sccf_df=sccf_df.append(df)
+    file_name = os.path.basename(file).split('.')[0]
+    df = pd.read_excel(open(file, 'rb'), sheet_name='Sheet1', header=0, index_col=None)
+    sccf_df = sccf_df.append(df)
     print("Read data from: "+file_name)
-sccf_df=sccf_df.replace('', '0')
+sccf_df = sccf_df.replace('', '0')
 
 # CP data
-cp_df=pd.read_excel(open("02. PH2023-15th Jan 23.xlsx", 'rb'), sheet_name='Selling code_Jan 2023', header=0, index_col=None)
-qry='''
+cp_df = pd.read_excel(open("02. PH2023-15th Jan 23.xlsx", 'rb'), sheet_name='Selling code_Jan 2023', header=0, index_col=None)
+qry = '''
 select distinct material
 from cp_df
 where "Material Group"='F070'
 '''
-cp_df=duckdb.query(qry).df()
+cp_df = duckdb.query(qry).df()
 
 # stock data
-path='Secondary_Stock_Trend_Report_'
-stock_dfs=[]
+path = 'Secondary_Stock_Trend_Report_'
+stock_dfs = []
 for file in glob(path+'*.xlsx'):
-    file_name=os.path.basename(file).split('.')[0]
-    df=pd.read_excel(open(file, 'rb'), sheet_name='Sheet1', header=0, index_col=None)
+    file_name = os.path.basename(file).split('.')[0]
+    df = pd.read_excel(open(file, 'rb'), sheet_name='Sheet1', header=0, index_col=None)
     stock_dfs.append(df)
     print("Read data from: "+file_name)
 
 # dates to analyze
-qry='''
+qry = '''
 select report_date
 from 
     (select distinct "Orig.Req.Delivery Date" report_date, strptime("Orig.Req.Delivery Date", '%d.%m.%Y')
@@ -48,18 +48,18 @@ from
     order by 2
     ) tbl1 
 '''
-date_df=duckdb.query(qry).df()
-dates=date_df['report_date'].values.tolist()
-l=len(dates)
+date_df = duckdb.query(qry).df()
+dates = date_df['report_date'].values.tolist()
+l = len(dates)
 print(dates)
 
 # accumulate daily data
-acc_label_df=pd.DataFrame()
+acc_label_df = pd.DataFrame()
 for i in range(2, l): 
     
     # loss - delivery 
-    report_date=dates[i]
-    qry='''
+    report_date = dates[i]
+    qry = '''
     select 
         "Orig.Req.Delivery Date" report_date, 
         "Local Sales Region 1 (S.Sales)" region,
@@ -74,11 +74,11 @@ for i in range(2, l):
     from sccf_df
     where "Orig.Req.Delivery Date"='''+"'"+report_date+"'"+'''
     '''
-    delivery_df=duckdb.query(qry).df()
+    delivery_df = duckdb.query(qry).df()
 
     # loss - order 
-    report_date=dates[i-1]
-    qry='''
+    report_date = dates[i-1]
+    qry = '''
     select 
         "Orig.Req.Delivery Date" report_date, 
         "Local Sales Region 1 (S.Sales)" region,
@@ -93,31 +93,31 @@ for i in range(2, l):
     from sccf_df
     where "Orig.Req.Delivery Date"='''+"'"+report_date+"'"+'''
     '''
-    order_df=duckdb.query(qry).df()
+    order_df = duckdb.query(qry).df()
     
     # stock - closing
-    report_date=dates[i-2]
+    report_date = dates[i-2]
     for df in stock_dfs:
-        cols=df.columns
+        cols = df.columns
         if report_date in cols:
-            stock_df=df
+            stock_df = df
             break
-    qry='''
+    qry = '''
     select "Unnamed: 3", "Unnamed: 4", "Unnamed: 7", "Unnamed: 8", "Unnamed: 9"
     from stock_df
     '''
-    stock_common_cols_df=duckdb.query(qry).df()
-    clstock_df=stock_df.filter(regex=report_date)
-    clstock_df=stock_common_cols_df.join(clstock_df)
-    clstock_df=clstock_df[1:] 
-    clstock_df.columns=['region', 'town', 'material', 'material_desc', 'pack_size', 'stock_vol_cs']  
+    stock_common_cols_df = duckdb.query(qry).df()
+    clstock_df = stock_df.filter(regex=report_date)
+    clstock_df = stock_common_cols_df.join(clstock_df)
+    clstock_df = clstock_df[1:] 
+    clstock_df.columns = ['region', 'town', 'material', 'material_desc', 'pack_size', 'stock_vol_cs']  
 
     # CP idef - delivery
-    qry='''
+    qry = '''
     select 
         *, 
         case 
-            -- when tbl2.material in (69575333, 69575326, 69575319, 69575314, 69572616, 69572607, 69572625, 69560905, 69560914, 69560935, 68932785) then 'running CP'
+            when tbl2.material in (69575333, 69575326, 69575319, 69575314, 69572616, 69572607, 69572625, 69560905, 69560914, 69560935, 68932785) then 'running CP'
             when tbl2.material is not null then 'old CP' 
             else 'non CP' 
         end cp_status
@@ -126,10 +126,10 @@ for i in range(2, l):
         left join 
         cp_df tbl2 using(material)
     '''
-    delivery_cp_idef_df=duckdb.query(qry).df()
+    delivery_cp_idef_df = duckdb.query(qry).df()
 
     #  CP idef - order
-    qry='''
+    qry = '''
     select 
         *, 
         case 
@@ -142,14 +142,14 @@ for i in range(2, l):
         left join 
         cp_df tbl2 using(material)
     '''
-    order_cp_idef_df=duckdb.query(qry).df()
+    order_cp_idef_df = duckdb.query(qry).df()
 
     # CP idef - closing stock
-    qry='''
+    qry = '''
     select 
         *, 
         case 
-            -- when tbl2.material in (69575333, 69575326, 69575319, 69575314, 69572616, 69572607, 69572625, 69560905, 69560914, 69560935, 68932785) then 'running CP'
+            when tbl2.material in (69575333, 69575326, 69575319, 69575314, 69572616, 69572607, 69572625, 69560905, 69560914, 69560935, 68932785) then 'running CP'
             when tbl2.material is not null then 'old CP' 
             else 'non CP' 
         end cp_status
@@ -158,10 +158,10 @@ for i in range(2, l):
         left join 
         cp_df tbl2 using(material)
     '''
-    clstock_cp_idef_df=duckdb.query(qry).df()
+    clstock_cp_idef_df = duckdb.query(qry).df()
 
     # all CPs of deliveries
-    qry='''
+    qry = '''
     select *
     from 
         (select *
@@ -183,13 +183,13 @@ for i in range(2, l):
         group by 1, 2, 3, 4
         ) tbl3 using(cp_status, region, town, pack_size)
     '''
-    label_df=duckdb.query(qry).df()
+    label_df = duckdb.query(qry).df()
     # 0 imputation
     c=label_df.select_dtypes(np.number).columns
-    label_df[c]=label_df[c].fillna(0)
+    label_df[c] = label_df[c].fillna(0)
 
     # attribution (labelling)
-    qry='''
+    qry = '''
     select 
         *, 
         clstock_vol_cs-given_order_qty revised_stock, 
@@ -205,24 +205,23 @@ for i in range(2, l):
         end loss_label
     from label_df
     '''
-    label_df=duckdb.query(qry).df()
+    label_df = duckdb.query(qry).df()
 
     # append, report
-    acc_label_df=acc_label_df.append(label_df)
+    acc_label_df = acc_label_df.append(label_df)
     print("Rows found for "+dates[i]+": "+str(label_df.shape[0]))
 
 # total instances
-print() 
-print("Total rows found: "+str(acc_label_df.shape[0]))
+print("\nTotal rows found: "+str(acc_label_df.shape[0]))
 
 # scorecard
-scorecard_df=pd.read_excel(open("sccf_2022.xlsx", 'rb'), sheet_name='Sheet1', header=0, index_col=None)
+scorecard_df = pd.read_excel(open("sccf_2022.xlsx", 'rb'), sheet_name='Sheet1', header=0, index_col=None)
 
 # primary sales data
-primdr_df=pd.read_excel(open("Pri DR  Jan-Jun 2022 BP.xlsx", 'rb'), sheet_name='Sheet1', header=0, index_col=None)
+primdr_df = pd.read_excel(open("Pri DR  Jan-Jun 2022 BP.xlsx", 'rb'), sheet_name='Sheet1', header=0, index_col=None)
 
 # analysis 01: Surf Excel brand
-qry='''
+qry = '''
 select *, sccf+(stock_loss_qty_pct*(1-sccf)) potential_sccf
 from 
     (select 
@@ -247,11 +246,11 @@ from
     group by 1
     ) tbl2 using(town)
 '''
-res_df=duckdb.query(qry).df()
+res_df = duckdb.query(qry).df()
 print(res_df)
 
 # analysis 02: pack sizes
-qry='''
+qry = '''
 select *, sccf+(stock_loss_qty_pct*(1-sccf)) potential_sccf
 from 
     (select 
@@ -294,11 +293,11 @@ from
 order by 2 desc, 4 desc
 limit 50
 '''
-res_df=duckdb.query(qry).df()
+res_df = duckdb.query(qry).df()
 print(res_df)
 
 # analysis 03: monthly
-qry='''
+qry = '''
 select *, sccf_card+(stock_loss_qty_pct*(1-sccf_card)) potential_sccf
 from 
     (select 
@@ -317,11 +316,11 @@ from
     from scorecard_df
     ) tbl2 using(report_month)
 '''
-res_df=duckdb.query(qry).df()
+res_df = duckdb.query(qry).df()
 print(res_df)
 
 # save results - Excel
-qry='''select * from acc_label_df'''
-label_df_exl=duckdb.query(qry).df()
+qry = '''select * from acc_label_df'''
+label_df_exl = duckdb.query(qry).df()
 label_df_exl.to_excel('labeled_sccf_loss_h1_22.xlsx', engine='xlsxwriter', index=False)
 
