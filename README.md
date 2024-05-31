@@ -27,6 +27,10 @@
   <img width="980" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/16bc1e79-d3e7-4788-9f67-d333d1e473fc">
 </p>
 
+### Project Jupyter - Material Activation Analysis
+<p align="center">
+  <img width="680" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/0645adc0-2248-47f8-8398-2e772d6a8af5">
+</p>
 
 
 
