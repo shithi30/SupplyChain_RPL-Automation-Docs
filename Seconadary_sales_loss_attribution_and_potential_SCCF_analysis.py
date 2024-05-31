@@ -57,7 +57,7 @@ print(dates)
 acc_label_df = pd.DataFrame()
 for i in range(2, l): 
     
-    # loss - delivery 
+    # loss: delivery 
     report_date = dates[i]
     qry = '''
     select 
@@ -76,7 +76,7 @@ for i in range(2, l):
     '''
     delivery_df = duckdb.query(qry).df()
 
-    # loss - order 
+    # loss: order 
     report_date = dates[i-1]
     qry = '''
     select 
@@ -95,7 +95,7 @@ for i in range(2, l):
     '''
     order_df = duckdb.query(qry).df()
     
-    # stock - closing
+    # stock: closing
     report_date = dates[i-2]
     for df in stock_dfs:
         cols = df.columns
@@ -112,7 +112,7 @@ for i in range(2, l):
     clstock_df = clstock_df[1:] 
     clstock_df.columns = ['region', 'town', 'material', 'material_desc', 'pack_size', 'stock_vol_cs']  
 
-    # CP idef - delivery
+    # CP idef: delivery
     qry = '''
     select 
         *, 
@@ -128,7 +128,7 @@ for i in range(2, l):
     '''
     delivery_cp_idef_df = duckdb.query(qry).df()
 
-    #  CP idef - order
+    #  CP idef: order
     qry = '''
     select 
         *, 
@@ -144,7 +144,7 @@ for i in range(2, l):
     '''
     order_cp_idef_df = duckdb.query(qry).df()
 
-    # CP idef - closing stock
+    # CP idef: closing stock
     qry = '''
     select 
         *, 
