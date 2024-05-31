@@ -64,9 +64,13 @@ Collaborative analysis with logistics, CNF, procurement & planning uncovered bus
 
 ### Project Jupyter - Material Activation Analysis
 <p align="center">
-  <img width="780" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/0645adc0-2248-47f8-8398-2e772d6a8af5">
+  <img width="810" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/0645adc0-2248-47f8-8398-2e772d6a8af5">
 </p>
 
+### Removal of 0-Stock Instances from Order Page
+<p align="center">
+  <img width="810" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/64ebf2e3-ebeb-4610-a825-e386679983df">
+</p>
 
 
 
