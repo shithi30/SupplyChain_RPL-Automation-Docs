@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 # import
 import pandas as pd
 import numpy as np
@@ -15,11 +12,7 @@ import xlsxwriter
 import win32com.client
 from datetime import datetime, timedelta
 
-
-# In[2]:
-
-
-# read LP
+# read lifting plan (LP)
 file = "Invoicing Plan For 24th June'23 - UBL.xlsx"
 sheet_name = "Sheet1"
 df = pd.read_excel(open(file, "rb"), sheet_name=sheet_name, header=0, index_col=None)
@@ -31,10 +24,6 @@ where town not like '%TOTAL%'
 '''
 lp_df = duckdb.query(qry).df()
 display(lp_df)
-
-
-# In[3]:
-
 
 # read allocation
 file = "Allocation Report (2).xlsx"
@@ -48,11 +37,7 @@ group by 1
 alloc_df = duckdb.query(qry).df()
 display(alloc_df)
 
-
-# In[4]:
-
-
-# gap
+# gap = plan - allocation
 qry = '''
 select *, gap*1.00/sum(gap) over(partition by depot) total_gap_pct
 from 
@@ -69,11 +54,7 @@ from
 gap_df = duckdb.query(qry).df()
 display(gap_df)
 
-
-# In[5]:
-
-
-# read C
+# read C-class SKUs
 file = "C Class SKU Classification.xlsx"
 sheet_name = "Sheet1"
 df = pd.read_excel(open(file, "rb"), sheet_name=sheet_name, header=3, index_col=None)
@@ -87,10 +68,6 @@ from c_df
 '''
 c_df = duckdb.query(qry).df()
 display(c_df)
-
-
-# In[6]:
-
 
 # read stock
 file = "Daily_Stock_UBL_UCL_23 Jun 2023 (3).xlsx"
@@ -122,11 +99,7 @@ from
 stock_df = duckdb.query(qry).df()
 display(stock_df)
 
-
-# In[7]:
-
-
-# match
+# match target
 qry = '''
 select *, stock*total_gap_pct to_fulfil, floor(stock*total_gap_pct) to_fulfil_rounded
 from 
@@ -137,16 +110,8 @@ from
 match_df = duckdb.query(qry).df()
 display(match_df)
 
-
-# In[8]:
-
-
 # result
 match_df.to_excel("output.xlsx", index = False)
-
-
-# In[9]:
-
 
 # # multiplicity check
 # qry = '''
@@ -156,11 +121,7 @@ match_df.to_excel("output.xlsx", index = False)
 # order by 3 desc
 # '''
 # df = duckdb.query(qry).df()
-# df
-
-
-# In[ ]:
-
+# display(df)
 
 
 
