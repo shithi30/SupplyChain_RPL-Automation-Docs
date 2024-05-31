@@ -23,7 +23,7 @@
 
 ### SCCF Loss Tagging & Potential
 <p align="center">
-  <img width="300" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/cf0ec1e0-f062-43ca-9c75-0c7602dd2a57">
+  <img width="320" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/cf0ec1e0-f062-43ca-9c75-0c7602dd2a57">
   <img width="500" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/28c3635b-ff0f-4ad4-b68f-640c5729195b">
 </p>
 
