@@ -15,6 +15,12 @@
   <img width="500" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/8a1ef9f0-1088-4054-8d22-dddf61dc6ca1">
 </p>
 
+### Replenishment Report Technical Documentation - Sphinx
+<p align="center">
+  <img width="1010" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/5173c063-4e35-4968-88e6-a9eb4457050c">
+  <img width="1010" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/49ebc20e-b800-4a41-9a9a-0a85a3e367cc">
+</p>
+
 ### Primary Off/Constrainted Impact Analysis
 <p align="center">
   <img width="940" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/c7a07843-087e-4742-81e6-7de971f95d7e">
