@@ -1,16 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 # import
 import pandas as pd
 import duckdb
-
-
-# In[2]:
-
 
 # lifting plan
 file = "C:/Users/Shithi.Maitra/Downloads/UBL_Lifting_plan_10 Nov 2023.xlsx"
@@ -18,10 +11,6 @@ sheet_name = "Lifting Plan"
 lp_df = pd.read_excel(open(file, "rb"), sheet_name=sheet_name, header=0, index_col=None)
 lp_df.columns = ['region', 'area', 'cust_code', 'town', 'plan', 'manual_plan', 'full_manual', 'inv_date', 'opd']
 display(lp_df)
-
-
-# In[3]:
-
 
 # confirmed plan
 file = "C:/Users/Shithi.Maitra/Downloads/All Town confirm order Full_09 Nov 2023.xlsx"
@@ -31,10 +20,6 @@ cf_df = cf_df[['Town', 'Customer confirm value']]
 cf_df.columns = ['town', 'confirmed_val']
 cf_df = duckdb.query('''select town, sum(confirmed_val) confirmed_val from cf_df group by 1''').df()
 display(cf_df)
-
-
-# In[ ]:
-
 
 # read RPL
 file = "C:/Users/Shithi.Maitra/Unilever Codes/Ad Hoc/2by2 Matrices/RPL Inputs/2023-11-09_Replenishment Repot_09 Nov 2023.xlsx"
@@ -53,27 +38,15 @@ where cls='Winter'
 winter_df = duckdb.query(qry).df()
 display(winter_df)
 
-
-# In[ ]:
-
-
 # winter BCs
 file = "C:/Users/Shithi.Maitra/Unilever Codes/Ad Hoc/2by2 Matrices/RPL Inputs/" + "Town x SKU  Allocation November'23.xlsx"
 sheet_name = "Town x SKU x Case x TGT "
 df = pd.read_excel(open(file, "rb"), sheet_name=sheet_name, header=2, index_col=None)
 tgt_df = df[['TOWN NAME', 'SKU NAME', 'TOWN x SKU TGT - TP Cr.']]
 tgt_df.columns = ['town', 'basepack', 'tgt_cr']
-tgt_df = duckdb.query('''
-select upper(town) town, upper(basepack) basepack, tgt_cr
-from tgt_df
-where upper(basepack) in(select basepack from winter_df)
-''').df()
+tgt_df = duckdb.query('''select upper(town) town, upper(basepack) basepack, tgt_cr from tgt_df where upper(basepack) in(select basepack from winter_df)''').df()
 tgt_df = duckdb.query('''select *, tgt_cr*1.00/(select sum(tgt_cr) from tgt_df) bc from tgt_df''').df()
 display(tgt_df)
-
-
-# In[ ]:
-
 
 # winter lines (stock < norm)
 qry = '''
@@ -117,11 +90,7 @@ order by stock_to_norm_diff desc
 step_df = duckdb.query(qry).df()
 display(step_df)
 
-
-# In[ ]:
-
-
-# winter lines (stock < 10 doh)
+# winter lines (stock < 10 DOH)
 qry = '''
 select * 
 from 
@@ -163,56 +132,11 @@ order by doh_lag_from_10 desc
 step2_df = duckdb.query(qry).df()
 display(step2_df)
 
-
-# In[ ]:
-
-
 # store
 with pd.ExcelWriter("C:/Users/Shithi.Maitra/Downloads/winter_low_stock.xlsx") as writer:
         anls_df.to_excel(writer, sheet_name="Winter Lines - Stock vs Norm", index=False)
         step_df.to_excel(writer, sheet_name="Action Towns - Stock vs Norm", index=False)
         anls2_df.to_excel(writer, sheet_name="Winter Lines - Stock vs 10 DOH", index=False)
         step2_df.to_excel(writer, sheet_name="Action Towns - Stock vs 10 DOH", index=False)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
 
 
