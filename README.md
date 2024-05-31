@@ -67,6 +67,11 @@ Collaborative analysis with logistics, CNF, procurement & planning uncovered bus
   <img width="810" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/0645adc0-2248-47f8-8398-2e772d6a8af5">
 </p>
 
+### Winter Understock Analysis
+<p align="center">
+  <img width="750" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/3031d2e1-35e3-4862-bb9a-fd1453c5e7a0">
+</p>
+
 ### Removal of 0-Stock Instances from Order Page
 <p align="center">
   <img width="810" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/64ebf2e3-ebeb-4610-a825-e386679983df">
