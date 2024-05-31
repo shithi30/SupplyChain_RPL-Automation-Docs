@@ -1,38 +1,27 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 # import
 import pandas as pd
 import duckdb
 
-
-# In[2]:
-
-
 # depot stock by MDM
-file_name=r'Daily_Stock_UBL_UCL_30 Mar 2023.XLSX'
-depot_stock_df=pd.read_excel(open(file_name, 'rb'), sheet_name='Sheet1', header=0, index_col=None)
+file_name = r'Daily_Stock_UBL_UCL_30 Mar 2023.XLSX'
+depot_stock_df = pd.read_excel(open(file_name, 'rb'), sheet_name='Sheet1', header=0, index_col=None)
 
 # distributor stock
-file_name=r'Replenishment Repot_30 Mar 2023.xlsx'
-norm_df=pd.read_excel(open(file_name, 'rb'), sheet_name='Replenishment UBL_UCL', header=0, index_col=None)
+file_name = r'Replenishment Repot_30 Mar 2023.xlsx'
+norm_df = pd.read_excel(open(file_name, 'rb'), sheet_name='Replenishment UBL_UCL', header=0, index_col=None)
 
 # volval
-file_name=r'Mar TDP Region Vol-Val_ 01.03.23.xlsx'
-volval_df=pd.read_excel(open(file_name, 'rb'), sheet_name='TDP', header=6, index_col=None)
+file_name = r'Mar TDP Region Vol-Val_ 01.03.23.xlsx'
+volval_df = pd.read_excel(open(file_name, 'rb'), sheet_name='TDP', header=6, index_col=None)
 cols = volval_df.columns.tolist()
 for i in range(0, len(cols)): cols[i] = cols[i].replace('\n', ' ')
 volval_df.columns = cols
 
-
-# In[3]:
-
-
 # shampoo tgt, norm, stk
-qry='''
+qry = '''
 select 
     basepack, 
     norm_qty, norm_qty*val_per_cs/10000000 norm_val_crore, 
@@ -70,21 +59,10 @@ from
     group by 1
     ) tbl3 using(basepack)
 '''
-res_df=duckdb.query(qry).df()
-res_df
-
-
-# In[4]:
-
+res_df = duckdb.query(qry).df()
+display(res_df)
 
 # excel
 writer=pd.ExcelWriter(r"shampoo_norm_stk_tgt.xlsx", engine='xlsxwriter')
 res_df.to_excel(writer, sheet_name="Sheet1", startcol=0, startrow=0, index=False)
 writer.save()
-
-
-# In[ ]:
-
-
-
-
