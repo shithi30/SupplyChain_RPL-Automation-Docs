@@ -21,6 +21,12 @@
   <img width="940" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/f07d3e0e-d2f8-4d3e-a17b-ae200ffb0857">
 </p>
 
+### Supply Chain Daily KPIs - Excel Automation
+<p align="center">
+  <img width="980" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/ef85025e-2c0e-4105-9141-3e131d272b72">
+  <img width="980" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/16bc1e79-d3e7-4788-9f67-d333d1e473fc">
+</p>
+
 
 
 
