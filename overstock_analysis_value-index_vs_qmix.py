@@ -1,16 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 # import
 import pandas as pd
 import duckdb
-
-
-# In[2]:
-
 
 # read RPL
 rpl_df = pd.read_excel(open("Replenishment Repot_10 Sep 2023.xlsx", "rb"), sheet_name="Replenishment UBL_UCL", header=0, index_col=None)
@@ -23,11 +16,7 @@ ucl_cls_df = pd.read_excel(open("UCL Classification Sep.xlsx", "rb"), sheet_name
 cls_df = duckdb.query('''select * from ubl_cls_df union select * from ucl_cls_df''').df()
 cls_df.columns = ['town', 'basepack_code', 'basepack', 'sale_val', 'contrib', 'cls']
 
-
-# In[3]:
-
-
-# town - portfolio (sku/abcd/overall) - sku_count - norm_qty - proposed_qty - stock_on_hand - value_index - qmix
+# town - portfolio (SKU/A-B-C-D/overall) - sku_count - norm_qty - proposed_qty - stock_on_hand - value_index - qmix
 qry = '''
 with 
     tbl as 
@@ -75,30 +64,8 @@ res_df_piv = duckdb.query('''select town, portfolio, value_index, qmix from res_
 res_df_piv = res_df_piv.pivot(index="town", columns="portfolio")
 display(res_df_piv)
 
-
-# In[5]:
-
-
 # store
 with pd.ExcelWriter("overstock_impact.xlsx") as writer:
     res_df.to_excel(writer, sheet_name="Full Data", index=False)
     res_df_piv.to_excel(writer, sheet_name="Summary", index=True)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
