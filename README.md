@@ -36,8 +36,8 @@ Template provided only, data unshareable due to confidentiality
 ### Value Chain Analysis
 Collaborative analysis with logistics, CNF, procurement & planning uncovered business problems solvable my CoE's automation capabilities
 <p align="center">
-  <img width="456" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/27f6f4d8-3c10-4168-8389-64e8fab5fb49">
-  <img width="450" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/08ce9624-4e0e-4677-b075-5cfa074ff3d1">
+  <img width="356" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/27f6f4d8-3c10-4168-8389-64e8fab5fb49">
+  <img width="350" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/08ce9624-4e0e-4677-b075-5cfa074ff3d1">
 </p>
 
 ### Project Jupyter - Material Activation Analysis
