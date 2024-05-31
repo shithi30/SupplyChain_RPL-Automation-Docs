@@ -46,9 +46,14 @@ Collaborative analysis with logistics, CNF, procurement & planning uncovered bus
   <img width="395" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/08ce9624-4e0e-4677-b075-5cfa074ff3d1">
 </p>
 
+### Depot-wise Target Sales Value Matching
+<p align="center">
+  <img width="780" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/7ae85b0b-5344-4e64-94c8-b7584d350632">
+</p>
+
 ### Project Jupyter - Material Activation Analysis
 <p align="center">
-  <img width="680" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/0645adc0-2248-47f8-8398-2e772d6a8af5">
+  <img width="780" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/0645adc0-2248-47f8-8398-2e772d6a8af5">
 </p>
 
 
