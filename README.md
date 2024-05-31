@@ -27,6 +27,17 @@
   <img width="980" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/16bc1e79-d3e7-4788-9f67-d333d1e473fc">
 </p>
 
+### Project DNA - TM Briefing Assistant
+Template provided only, data unshareable due to confidentiality
+<p align="center">
+  <img width="680" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/3f95a8d7-c6f7-452d-ad67-e0c6e1b23d28">
+</p>
+
+### Value Chain Analysis - Network Planning/Procurement/Logistics
+<p align="center">
+  <img width="710" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/27f6f4d8-3c10-4168-8389-64e8fab5fb49">
+</p>
+
 ### Project Jupyter - Material Activation Analysis
 <p align="center">
   <img width="680" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/0645adc0-2248-47f8-8398-2e772d6a8af5">
