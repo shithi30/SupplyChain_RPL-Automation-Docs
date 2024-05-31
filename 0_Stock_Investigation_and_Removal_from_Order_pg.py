@@ -1,42 +1,35 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 # import
 import pandas as pd
 import duckdb
 
-
-# In[2]:
-
-
 # depot stock by MDM
-file_name=r'Daily_Stock_UBL_UCL_19 Mar 2023.XLSX'
-depot_stock_df=pd.read_excel(open(file_name, 'rb'), sheet_name='Sheet1', header=0, index_col=None)
+file_name = r'Daily_Stock_UBL_UCL_19 Mar 2023.XLSX'
+depot_stock_df = pd.read_excel(open(file_name, 'rb'), sheet_name='Sheet1', header=0, index_col=None)
 
 # norm
 file_name=r'Replenishment Repot_19 Mar 2023.xlsx'
 norm_df=pd.read_excel(open(file_name, 'rb'), sheet_name='Replenishment UBL_UCL', header=0, index_col=None)
 
 # volval
-file_name=r'Mar TDP Region Vol-Val_ 01.03.23.xlsx'
-volval_df=pd.read_excel(open(file_name, 'rb'), sheet_name='TDP', header=6, index_col=None)
+file_name = r'Mar TDP Region Vol-Val_ 01.03.23.xlsx'
+volval_df = pd.read_excel(open(file_name, 'rb'), sheet_name='TDP', header=6, index_col=None)
 cols = volval_df.columns.tolist()
 for i in range(0, len(cols)): cols[i] = cols[i].replace('\n', ' ')
 volval_df.columns = cols
 
 # plant/depot
-file_name=r'plant_mapping.xlsx'
-plantmap_df=pd.read_excel(open(file_name, 'rb'), sheet_name='Sheet1', header=0, index_col=None)
+file_name = r'plant_mapping.xlsx'
+plantmap_df = pd.read_excel(open(file_name, 'rb'), sheet_name='Sheet1', header=0, index_col=None)
 
 # daily
-file_name=r'Monthly_Order_&_Allocation_Report_19 Mar 2023.xlsx'
-daily_df=pd.read_excel(open(file_name, 'rb'), sheet_name='Summary BP', header=0, index_col=None)
-daily_df=daily_df[['Basepack Description', 'All_information', daily_df.columns.to_list()[-18]]]
-daily_df.columns=['Basepack', 'all_info', 'last_day_stats']
-qry='''
+file_name = r'Monthly_Order_&_Allocation_Report_19 Mar 2023.xlsx'
+daily_df = pd.read_excel(open(file_name, 'rb'), sheet_name='Summary BP', header=0, index_col=None)
+daily_df = daily_df[['Basepack Description', 'All_information', daily_df.columns.to_list()[-18]]]
+daily_df.columns = ['Basepack', 'all_info', 'last_day_stats']
+qry = '''
 select 
     Basepack,
     sum(case when all_info='Secondary Achievement' then last_day_stats else null end) "Secondary Achievement",
@@ -45,20 +38,12 @@ from daily_df
 where all_info in('Secondary Achievement', 'Business Contribution')
 group by 1
 '''
-daily_df=duckdb.query(qry).df()
-
-
-# In[3]:
-
+daily_df = duckdb.query(qry).df()
 
 # excel
 writer = pd.ExcelWriter(r"0_but_live.xlsx", engine='xlsxwriter')
 
-
-# In[4]:
-
-
-# depot stock 0, but live
+# depot stock 0
 qry = '''
 select * 
 from 
@@ -85,6 +70,7 @@ res_df0 = duckdb.query(qry).df()
 display(res_df0)
 res_df0.to_excel(writer, sheet_name="depot_stock_0", startcol=0, startrow=0, index=False)
 
+# depot stock 0, but live
 qry = '''
 select * 
 from 
@@ -105,10 +91,6 @@ from
 res_df = duckdb.query(qry).df()
 display(res_df)
 res_df.to_excel(writer, sheet_name="depot_stock_0_live", startcol=0, startrow=0, index=False)
-
-
-# In[5]:
-
 
 # customer stock 0, but live
 qry = '''
@@ -136,10 +118,6 @@ from
 res_df2 = duckdb.query(qry).df()
 display(res_df2)
 res_df2.to_excel(writer, sheet_name="customer_stock_0_live", startcol=0, startrow=0, index=False)
-
-
-# In[6]:
-
 
 # depot and customer stock 0, but live
 qry = '''
@@ -177,24 +155,6 @@ res_df3 = duckdb.query(qry).df()
 display(res_df3)
 res_df3.to_excel(writer, sheet_name="depot+customer_stock_0_live", startcol=0, startrow=0, index=False)
 
-# analysis
-qry='''
-select 
-    count(Basepack) basepacks,
-    sum("Business Contribution") "Business Contribution", 
-    avg("Secondary Achievement") "Secondary Achievement"
-from 
-    (select distinct Basepack, "Secondary Achievement", "Business Contribution"
-    from res_df3
-    ) tbl1
-'''
-anls_df=duckdb.query(qry).df()
-display(anls_df)
-
-
-# In[7]:
-
-
 # volval primary 0, secondary > 0, but live
 qry = '''
 select *
@@ -214,16 +174,19 @@ res_df4 = duckdb.query(qry).df()
 display(res_df4)
 res_df4.to_excel(writer, sheet_name="primary_0_sec_nonzero_live", startcol=0, startrow=0, index=False)
 
-
-# In[8]:
-
+# analysis
+qry = '''
+select 
+    count(Basepack) basepacks,
+    sum("Business Contribution") "Business Contribution", 
+    avg("Secondary Achievement") "Secondary Achievement"
+from 
+    (select distinct Basepack, "Secondary Achievement", "Business Contribution"
+    from res_df3
+    ) tbl1
+'''
+anls_df = duckdb.query(qry).df()
+display(anls_df)
 
 # save
 writer.save()
-
-
-# In[ ]:
-
-
-
-
