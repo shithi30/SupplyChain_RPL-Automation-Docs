@@ -29,7 +29,6 @@ today = (datetime.today() - timedelta(0)).strftime('%d.%m.%Y')
 to_send_seq = [8, 0, 3, 4, 7]
 to_send_path = []
 to_send_caption = ['Day View', '', '', 'Category View', 'Region View', '', '', 'TDP View', '']
-# groups = ['DXqnN42tpV27ZoVWszBH9D'] 
 groups = ['GQl2yIAav9i3ejwzWC5XKu']
 
 # emails
