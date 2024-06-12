@@ -67,6 +67,12 @@ Collaborative analysis with logistics, CNF, procurement & planning uncovered bus
   <img width="810" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/0645adc0-2248-47f8-8398-2e772d6a8af5">
 </p>
 
+### FEFO Trade Return Dashboard - Power BI
+<p align="center">
+  <img width="500" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/2e2b5b0f-b799-40df-a9de-4bcdb9b3661c">
+  <img width="500" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/447083c5-c378-4c2c-91bc-0aee1b1cb008">
+</p>
+
 ### Winter Understock Analysis
 <p align="center">
   <img width="750" alt="ret" src="https://github.com/shithi30/SupplyChain_RPL_Analyses-Automation-Documentation/assets/43873081/3031d2e1-35e3-4862-bb9a-fd1453c5e7a0">
