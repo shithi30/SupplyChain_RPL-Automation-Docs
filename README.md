@@ -2,7 +2,7 @@ Unilever Bangladesh Ltd's Supply Chain function's Excellence team was formed to:
 - Carry out extensive value chain analysis of underlyting teams - CNF/Port Clearance, Procurement, Logistics, MAKE/Factory, Planning, Master Data Mgmt.
 - Eliminate repetitive, non-value adding & manual tasks wherever possible, save man-hours and identify areas needing stategic analytical support.
 
-This repository stores many implementations of the CoE (Center of Excellence) function, using the following tools.
+This repository stores many implementations of the *CoE (Center of Excellence)* function, using the following tools.
 
 ### Tech Stack
 Language - `Python` , Data Analysis - `Pandas, DuckDB, Parquet` , Automation - `Selenium, Openpyxl, Windows Scheduler` , Documentation - `Sphinx` , Notification - `Win32com, Pywhatkit` , Charts & Viz - `PowerBI, Excel` 
