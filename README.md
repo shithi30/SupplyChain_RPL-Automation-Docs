@@ -1,3 +1,12 @@
+Unilever Bangladesh Ltd's Supply Chain function's Excellence team was formed to: 
+- Carry out extensive value chain analysis of underlyting teams - CNF/Port Clearance, Procurement, Logistics, MAKE/Factory, Planning, Master Data Mgmt.
+- Eliminate repetitive, non-value adding & manual tasks wherever possible, save man-hours and to identify areas needing stategic analytical support.
+
+This repository stores many implementations of the CoE (Center of Excellence) function, using the following tech stack.
+
+### FLASHER Report - WhatsApp Automation
+Language - `Python` , Data Analysis - `Pandas, DuckDB, Parquet` , Automation - `Selenium, Openpyxl, Windows Scheduler` , Documentation - `Sphinx` , Notification - `Win32com, Pywhatkit`, Charts & Viz - `PowerBI, Excel` 
+
 ### FLASHER Report - WhatsApp Automation
 <p align="center">
   <img width="250" alt="fl1" src="https://github.com/shithi30/SupplyChain-RPL_Automation_Scripts/assets/43873081/e855faba-8275-46bc-bee1-a1d63bdf28d7">
