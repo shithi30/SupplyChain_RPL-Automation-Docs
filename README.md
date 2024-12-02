@@ -5,7 +5,7 @@ Unilever Bangladesh Ltd's Supply Chain function's Excellence team was formed to:
 This repository stores many implementations of the CoE (Center of Excellence) function, using the following tools.
 
 ### Tech Stack
-Language - `Python` , Data Analysis - `Pandas, DuckDB, Parquet` , Automation - `Selenium, Openpyxl, Windows Scheduler` , Documentation - `Sphinx` , Notification - `Win32com, Pywhatkit`, Charts & Viz - `PowerBI, Excel` 
+Language - `Python` , Data Analysis - `Pandas, DuckDB, Parquet` , Automation - `Selenium, Openpyxl, Windows Scheduler` , Documentation - `Sphinx` , Notification - `Win32com, Pywhatkit` , Charts & Viz - `PowerBI, Excel` 
 
 ### FLASHER Report - WhatsApp Automation
 <p align="center">
